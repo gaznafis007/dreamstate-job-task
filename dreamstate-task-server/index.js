@@ -43,8 +43,13 @@ async function run() {
     });
     app.post("/users", async (req, res) => {
       const user = req.body;
-      const result = await userCollection.insertOne(user);
-      res.send(result);
+      const previousUser = await userCollection.findOne(user.uid);
+      if (previousUser) {
+        const result = await userCollection.insertOne(user);
+        res.send(result);
+      } else {
+        res.send({ message: "user is already registered" });
+      }
     });
   } finally {
     // Ensures that the client will close when you finish/error

@@ -35,8 +35,8 @@ export default function Ships() {
             {
                 ships.map((ship)=>(
                     <>
-                        <label htmlFor={ship._id} className="cursor-pointer">
-                        <div  key={ship._id}>
+                        <label key={ship._id} htmlFor={ship._id} className="cursor-pointer">
+                        <div>
                             <figure>
                             <img src={ship.img} alt="river cruiser" className="aspect-square" />
                             </figure>

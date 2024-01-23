@@ -1,5 +1,6 @@
 import EventDetails from "../Components/EventDetails";
 import Header from "../Components/Header";
+import Ships from "../Components/Ships";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Header/>
             <EventDetails/>
+            <Ships/>
         </div>
     );
 };

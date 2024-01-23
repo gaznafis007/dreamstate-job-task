@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { AuthContext } from '../api/Auth/AuthProvider'
 
 export default function Navbar() {
+  const {user,logOut} = useContext(AuthContext)
     const navItems = <>
     <li><NavLink className={({isActive})=> isActive ? 'border-b-2 border-blue-400 p-2 capitalize text-xl inline-block rounded-none text-blue-600' : "text-blue-400 capitalize"} to="/">Home</NavLink></li>
     <li><NavLink className={({isActive})=> isActive ? 'border-b-2 border-blue-400 p-2 capitalize text-xl inline-block rounded-none text-blue-600' : "text-blue-400 capitalize"} to="/event-details">event details</NavLink></li>
@@ -27,7 +30,12 @@ export default function Navbar() {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link  to="/login" className="btn btn-sm btn-outline border-2 border-blue-400 text-blue-400 hover:border-none hover:text-white hover:bg-blue-400">Login</Link>
+    {
+      user?.uid ?
+      <button onClick={logOut()}  to="/login" className="btn btn-sm btn-outline border-2 border-blue-400 text-blue-400 hover:border-none hover:text-white hover:bg-blue-400">Logout</button>
+      :
+      <Link  to="/login" className="btn btn-sm btn-outline border-2 border-blue-400 text-blue-400 hover:border-none hover:text-white hover:bg-blue-400">Login</Link>
+    }
   </div>
 </div>
     </>

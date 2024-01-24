@@ -3,10 +3,6 @@ import Title from "./Title";
 import Modal from "./Modal";
 import CardSkeleton from "./CardSkeleton";
 
-
-
-
-
 export default function Ships() {
     const [ships,setShips] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -36,7 +32,7 @@ export default function Ships() {
                 ships.map((ship)=>(
                     <>
                         <label key={ship._id} htmlFor={ship._id} className="cursor-pointer">
-                        <div>
+                        <div key={ship._id}>
                             <figure>
                             <img src={ship.img} alt="river cruiser" className="aspect-square" />
                             </figure>

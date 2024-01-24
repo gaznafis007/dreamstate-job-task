@@ -1,6 +1,6 @@
-import { useContext } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../api/Auth/AuthProvider";
+
 
 const Login = () => {
     const handleLogin = (event) =>{
@@ -11,7 +11,7 @@ const Login = () => {
         console.log(email,password)
     }
     const handleGoogleLogIn = () =>{
-
+      console.log('googleLogin')
     }
     return (
         <>

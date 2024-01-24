@@ -1,9 +1,12 @@
+
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../api/Auth/AuthProvider";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../api/AuthProvider";
+
 
 
 const SignUp = () => {
+  const {signUp,getProfile,authError,setAuthError} = useContext(AuthContext)
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
@@ -11,6 +14,15 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name,email,password)
+        signUp(email,password)
+        .then(res=>{
+          console.log(res.user)
+          getProfile(name)
+        })
+        .catch(error=>{
+          setAuthError(error)
+          console.log(error)
+        })
     }
     const handleGoogleLogIn = () =>{
 
@@ -44,8 +56,8 @@ const SignUp = () => {
           <label className="label">
             <Link to="/login" className="label-text-alt link link-hover">Already have an account please login?</Link>
           </label>
-          {/* {
-            authError && <p className="text-xl text-red-500">{authError}</p>
+           {/* {
+            authError ? <p className="text-xl text-red-500">{authError}</p> : ''
           } */}
         </div>
         <div className="form-control mt-6">
